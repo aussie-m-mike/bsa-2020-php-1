@@ -13,13 +13,23 @@ class CarTrackHtmlPresenter
     {
     	$html = '';
 
+		$html .= $this->renderTitle();
+		$html .= '<ul style="display: flex; flex-flow: row wrap; justify-content: space-between; list-style: none;">';
+
 		foreach ( $track->all() as $car ) {
-			$html .= '<div>';
+			$html .= '<li>';
 			$html .= '<h2>'.$car->getName().': '.$car->getSpeed().', '. $car->getFuelConsumption().'</h2>';
 			$html .= '<img src="'.$car->getImage().'">';
-			$html .= '<div>';
+			$html .= '</li>';
         }
+
+        $html .= '</ul>';
 
         return $html;
     }
+
+    private function renderTitle(): string
+	{
+		return '<h1 style="text-align: center">Cars on the track</h1>';
+	}
 }
